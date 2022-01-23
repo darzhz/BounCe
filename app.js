@@ -1,20 +1,26 @@
 let balls = [];
+let gravityToggle = true;
 function setup(){
   createCanvas(windowWidth,windowHeight);
   background(175);
   let ball = new Obj();
-  ball.spawnRandom(12,balls);
+  ball.spawnRandom(5,balls);
  // console.log(ball)
   frameRate(60);
 }
 function draw(){
   background(0);
   for(let i = 0;i<balls.length;i++){
+    if(gravityToggle){
    balls[i].applyGravity();
+    }
    balls[i].show();
   // console.log(balls[0].gravityY);
   }
   checkCollision(balls);
+  if(mouseIsPressed){
+    addBalz();
+  }
 }
   function checkCollision(balls){
      for(let i = 0;i<=balls.length;i++){
@@ -63,13 +69,16 @@ function draw(){
         let dist = sqrt(Math.pow((bx-ax),2) + Math.pow((by-ay),2));
         return dist;
   }
-  //gravity sensr
-/*
-let gravitySensor = new GravitySensor({frequency: 60});
-
-gravitySensor.addEventListener("reading", e => {
- // console.log(`Gravity along the X-axis ${gravitySensor.x}, ${gravitySensor.y}`);
-});
-
-gravitySensor.start();
-*/
+  function addBalz(){
+    if(mouseY >50){
+    let colr = color(random(0,255),random(0,255),random(0,255));
+  let ball = new Obj(mouseX,mouseY,random(5,5),random(5,5),colr,random(20,30));
+    balls.push(ball);
+    }
+  }
+  function toggle(){
+    gravityToggle = gravityToggle?false:true;
+    let btn = document.getElementById("btn");
+    let color = gravityToggle?"green":"red";
+    btn.style.backgroundColor=color;
+  }

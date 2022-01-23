@@ -16,9 +16,21 @@
          padding: 0;
          background-color: black;
        }
+       #btn{
+         height: 50px;
+         width: 100%;
+         background-color: green;
+         font-size: 2rem;
+         border:none;
+         margin:0;
+         padding: 0;
+         position: fixed;
+         z-index: 1;
+       }
      </style>
    </head>
    <body>
-     <p style="color:grey; position:fixed;left:40vw;">let's bounCe!</p>
+     <p style="color:white; position:fixed;left:5vw;z-index:2;">let's bounCe!</p>
+     <button id="btn" onclick="toggle()">Gravity</button>
    </body>
  </html>
